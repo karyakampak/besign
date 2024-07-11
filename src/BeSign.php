@@ -2,6 +2,8 @@
 
 namespace Karyadidk\BeSign;
 
+use FFI;
+
 // Define the class
 class BeSign {
     // Properties
