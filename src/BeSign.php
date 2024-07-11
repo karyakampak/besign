@@ -212,13 +212,25 @@ class BeSign {
     // Method to display car details
     public function sign() {
 
-        $ffi = FFI::cdef("
-        char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
-        void free_string(const char* buffer);
-        char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
-        void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
-        void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
-        ", __DIR__."/lib/libdksign.so");
+        if (PHP_OS === 'Linux') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.so");
+        } elseif (PHP_OS === 'Darwin') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.dylib");
+        } else {
+            echo "Operating system not recognized";
+        }
 
         $pdf_path = $this->pdf_path;
         $image_path = $this->image_path;
@@ -305,13 +317,25 @@ class BeSign {
     // Method to display car details
     public function embededSign() {
 
-        $ffi = FFI::cdef("
-        char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
-        void free_string(const char* buffer);
-        char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
-        void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
-        void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
-        ", __DIR__."/lib/libdksign.so");
+        if (PHP_OS === 'Linux') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.so");
+        } elseif (PHP_OS === 'Darwin') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.dylib");
+        } else {
+            echo "Operating system not recognized";
+        }
 
         $pdf_path = $this->pdf_path;
         $image_path = $this->image_path;
@@ -337,13 +361,25 @@ class BeSign {
     // Method to display car details
     public function signWithCertificate() {
 
-        $ffi = FFI::cdef("
-        char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
-        void free_string(const char* buffer);
-        char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
-        void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
-        void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
-        ", __DIR__."/lib/libdksign.so");
+        if (PHP_OS === 'Linux') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.so");
+        } elseif (PHP_OS === 'Darwin') {
+            $ffi = FFI::cdef("
+            char* placeHolder(const char* pdf_path, const char* image_path, int page, int visibility, float x, float y, float width, float height, int isSeal);
+            void free_string(const char* buffer);
+            char* place(const char* pdf_char, const char* signature_char, const char* catalog_char, const char* byteRange0_char, const char* byteRange1_char, const char* byteRange2_char, const char* byteRange3_char, const char* outputPath);
+            void signWithP12(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* p12Path, const char* passphrase, int isSeal);
+            void signBSrE(const char* pdf_path, const char* image_path, const char* output_path, int page, int visibility, float x, float y, float width, float height, const char* nik, const char* passphrase, const char* id, const char* secret, int isLTV, int isSeal);
+            ", __DIR__."/lib/libdksign.dylib");
+        } else {
+            echo "Operating system not recognized";
+        }
 
         $pdf_path = $this->pdf_path;
         $image_path = $this->image_path;

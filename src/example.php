@@ -2,12 +2,12 @@
 
 require_once 'class.php';
 
-$pdf_path = "/app/dksign/input/example.pdf";
-$image_path = "/app/dksign/input/visualku.png";
-$output_path = "/app/dksign/output/output.pdf";
-$p12Path = "/app/dksign/input/usertesting.p12";
-$nik = "3317080602970004";
-$passphraseBSrE = "Karya_Kampak123";
+$pdf_path = "./input/example.pdf";
+$image_path = "./input/visualku.png";
+$output_path = "./output/output.pdf";
+$p12Path = "./input/usertesting.p12";
+$nik = "6372032607970001";
+$passphraseBSrE = "333GokuBuild!";
 $passphraseCert = "123456";
 $page = 1;
 $visibility = 1;
