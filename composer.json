@@ -1,0 +1,19 @@
+{
+    "name": "karyadidk/besign",
+    "description": "A simple PHP package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karyadidk",
+            "email": "karyadidk@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Karyadidk\\BeSign\\": "src/"
+        }
+    }
+}
