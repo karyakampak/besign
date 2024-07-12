@@ -26,24 +26,24 @@ class BeSign {
     public $isSeal;
 
     // Constructor
-    public function __construct($pdf_path, $image_path, $output_path, $p12Path, $nik, $passphraseBSrE, $passphraseCert, $page, $visibility, $x, $y, $width, $height, $id, $secret, $isLTV, $isSeal) {
-        $this->pdf_path = $pdf_path;
-        $this->image_path = $image_path;
-        $this->output_path = $output_path;
-        $this->p12Path = $p12Path;
-        $this->nik = $nik;
-        $this->passphraseBSrE = $passphraseBSrE;
-        $this->passphraseCert = $passphraseCert;
-        $this->page = $page;
-        $this->visibility = $visibility;
-        $this->x = $x;
-        $this->y = $y;
-        $this->width = $width;
-        $this->height = $height;
-        $this->id = $id;
-        $this->secret = $secret;
-        $this->isLTV = $isLTV;
-        $this->isSeal = $isSeal;
+    public function __construct($params = []) {
+        $this->pdf_path = $params['pdf_path'];
+        $this->image_path = $params['image_path'] ?? "";
+        $this->output_path = $params['output_path'];
+        $this->p12Path = $params['p12Path'] ?? "";
+        $this->nik = $params['nik'] ?? "";
+        $this->passphraseBSrE = $params['passphraseBSrE'] ?? "";
+        $this->passphraseCert = $params['passphraseCert'] ?? "";
+        $this->page = $params['page'] ?? 1;
+        $this->visibility = $params['visibility'] ?? 0;
+        $this->x = $params['x'] ?? 0.0;
+        $this->y = $params['y'] ?? 0.0;
+        $this->width = $params['width'] ?? 0.0;
+        $this->height = $params['height'] ?? 0.0;
+        $this->id = $params['id'] ?? "";
+        $this->secret = $params['secret'] ?? "";
+        $this->isLTV = $params['isLTV'] ?? 0;
+        $this->isSeal = $params['isSeal'] ?? 0;
     }
 
 
@@ -187,7 +187,8 @@ class BeSign {
                     $signature = "Error: Signature data missing or null";
                     error_log("Error: Signature data missing or null");
                     $new_token = get_token($id, $secret);
-                    $file_path = './token.json';
+                    $directory = __DIR__;
+                    $file_path = $directory . '/token.json';
                     $data = array(
                         'token' => $new_token,
                         'timestamp' => time(), // Optionally add more data
@@ -212,7 +213,7 @@ class BeSign {
     }
 
     // Method to display car details
-    public function sign() {
+    public function detachedSign() {
 
         if (PHP_OS === 'Linux') {
             $ffi = FFI::cdef("
@@ -317,7 +318,7 @@ class BeSign {
     }
 
     // Method to display car details
-    public function embededSign() {
+    public function sign() {
 
         if (PHP_OS === 'Linux') {
             $ffi = FFI::cdef("

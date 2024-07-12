@@ -1,6 +1,8 @@
 <?php
 
-require_once 'class.php';
+require_once 'BeSign.php';
+
+use Karyadidk\BeSign\BeSign;
 
 $pdf_path = "./input/example.pdf";
 $image_path = "./input/visualku.png";
@@ -21,11 +23,18 @@ $isLTV = 0;
 $isSeal = 0;
 
 // Create an instance of the Car class
-$besign = new BeSign($pdf_path, $image_path, $output_path, $p12Path, $nik, $passphraseBSrE, $passphraseCert, $page, $visibility, $x, $y, $width, $height, $id, $secret, $isLTV, $isSeal);
+$besign = new BeSign([
+    "pdf_path" => $pdf_path,
+    "output_path" => $output_path,
+    "nik" => $nik,
+    "passphraseBSrE" => $passphraseBSrE,
+    "id" => $id,
+    "secret" => $secret
+]);
 
 // Call the display method to show car details
-// $besign->sign();
+$besign->sign();
 // $besign->embededSign();
-$besign->signWithCertificate();
+// $besign->signWithCertificate();
 
 ?>
