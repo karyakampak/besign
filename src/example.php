@@ -1,13 +1,13 @@
 <?php
 
-require_once 'BeSign.php';
+require_once __DIR__.'/BeSign.php';
 
 use Karyadidk\BeSign\BeSign;
 
-$pdf_path = "./input/example.pdf";
-$image_path = "./input/visualku.png";
-$output_path = "./output/output.pdf";
-$p12Path = "./input/usertesting.p12";
+$pdf_path = __DIR__."/input/example.pdf";
+$image_path = __DIR__."/input/visualku.png";
+$output_path = __DIR__."/output/output.pdf";
+$p12Path = __DIR__."/input/usertesting.p12";
 $tokenApi = "";
 $cmsApi = "";
 $nik = "";
@@ -52,10 +52,8 @@ $isSeal = 0;
 $besignWithCertificate = new BeSign([
     "pdf_path" => $pdf_path,
     "output_path" => $output_path,
-    "nik" => $nik,
-    "passphraseBSrE" => $passphraseBSrE,
-    "id" => $id,
-    "secret" => $secret
+    "p12Path" => $p12Path,
+    "passphraseCert" => $passphraseCert
 ]);
 $besignWithCertificate->signWithCertificate();
 
