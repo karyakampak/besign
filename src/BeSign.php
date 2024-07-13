@@ -10,6 +10,8 @@ class BeSign {
     public $pdf_path;
     public $image_path;
     public $output_path;
+    public $tokenApi;
+    public $cmsApi;
     public $p12Path;
     public $nik;
     public $passphraseBSrE;
@@ -30,6 +32,8 @@ class BeSign {
         $this->pdf_path = $params['pdf_path'];
         $this->image_path = $params['image_path'] ?? "";
         $this->output_path = $params['output_path'];
+        $this->tokenApi = $params['tokenApi'] ?? "";
+        $this->cmsApi = $params['cmsApi'] ?? "";
         $this->p12Path = $params['p12Path'] ?? "";
         $this->nik = $params['nik'] ?? "";
         $this->passphraseBSrE = $params['passphraseBSrE'] ?? "";
@@ -57,7 +61,7 @@ class BeSign {
         }
 
         // Set the URL for the API endpoint
-        $url = "https://api-bsre.bssn.go.id/oauth2/token";
+        $url = $this->tokenApi;
         curl_setopt($curl, CURLOPT_URL, $url);
 
         // Set Basic authentication credentials
@@ -121,7 +125,7 @@ class BeSign {
     private function get_signature($bsHash, $nik, $passphrase, $id, $secret, $token) {
 
         // Initialize cURL
-        $url = "https://api-bsre.bssn.go.id/v2/esign/v2/api/entity/sign/hash/pdf";
+        $url = $this->cmsApi;;
         $ch = curl_init($url);
 
         // Create the JSON object
