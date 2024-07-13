@@ -1,5 +1,3 @@
-
-Copy code
 # BeSign
 
 BeSign adalah library PHP yang dirancang untuk memudahkan penambahan tanda tangan digital pada dokumen PDF. Dengan BeSign, Anda dapat menandatangani dokumen PDF secara programatik, memberikan fleksibilitas tinggi untuk aplikasi Anda dalam mengelola dan mengotentikasi dokumen.
